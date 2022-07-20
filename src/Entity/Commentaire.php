@@ -29,6 +29,9 @@ class Commentaire
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     private ?articles $articles = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    private ?Blogpost $blogpost = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Commentaire
     public function setArticles(?articles $articles): self
     {
         $this->articles = $articles;
+
+        return $this;
+    }
+
+    public function getBlogpost(): ?Blogpost
+    {
+        return $this->blogpost;
+    }
+
+    public function setBlogpost(?Blogpost $blogpost): self
+    {
+        $this->blogpost = $blogpost;
 
         return $this;
     }
