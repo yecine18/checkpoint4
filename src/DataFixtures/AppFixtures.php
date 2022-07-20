@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
         $user->setPrenom($faker->firstName());
         $user->setEmail($faker->email());
         $user->setDescription($faker->text());
-        $user->setImage('https://via.placeholder.com/360');
+        $user->setImage($faker->imageUrl());
         $user->setbirthday($faker->DateTime($format = 'D-m-y'));
         $user->setPassword($this->passwordHasher->hashPassword($user, 'password'));
         $user->setRoles(['ROLE_ADMIN']);

@@ -14,8 +14,11 @@ class HomeController extends AbstractController
     {
         //$user = $this->getUser();
         $admin = $userRepository->findOneBy([]);
- 
-         
+        if ($this->getUser()) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('app_user');
+            }
+        }
         return $this->render('home/index.html.twig', [
             'admin' => $admin,
         ]);
