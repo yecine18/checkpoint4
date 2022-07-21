@@ -44,7 +44,7 @@ class UserController extends AbstractController
         return $this->redirectToRoute("app_home");
     }
     //delete
-    #[Route('/user/{id}/delete', name: 'article_delete')]
+    #[Route('/user/delete', name: 'article_delete')]
 
     public function delete(
         User $user,
