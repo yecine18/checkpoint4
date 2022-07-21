@@ -1,0 +1,28 @@
+
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}Y'S{% endblock %}
+
+{% block body %}
+<br><br>
+<section class="py-8 py-md-11 mt-n10 mt-md-n14">
+<div class="container">
+<div class="row" data-isotope='{"layoutMode": "fitRows"}'>
+{% for article in articles %}
+{% set img = articles %}
+<div class="col-12 col-md-4 ux">
+<div class="card lift lift-lg shaow-light-lg mb-7" href="#">
+<img class="card-img-top" src={{article.image}}>
+<div class="card-body">
+<div class="shape shape-botton-100 shape-fluid-x svg-shim text-wite">
+</div>
+<p>{{ article.description }}</p>
+<p>{{ article.price }} $</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endfor %}
+{% endblock %}
