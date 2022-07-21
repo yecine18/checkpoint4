@@ -25,10 +25,15 @@
         </div>
       
     </ul>
+    {% if app.user is defined and app.user is not empty %}
+    {% if is_granted('ROLE_ADMIN') == true %}
+                    
     <form class="form-inline my-2 my-lg-0">
     <div class="btn btn-outline-success my-2 my-sm-0">
-      <a class="btn btn-outline-success my-2 my-sm-0" href="{{path('app_logout')}}">Logout</a>
+      <a  href="{{path('app_logout')}}">Logout</a>
       </div>
     </form>
+    {%  endif %}
+    {%  endif %}
   </div>
 </nav>
