@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<title>Articles</title>
+
+{% block body %}
+    <h1>Articles</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ article.image }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ article.description }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ article.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_userc_index') }}">back to list</a>
+
+    <a href="{{ path('app_userc_edit', {'id': article.id}) }}">edit</a>
+
+    {{ include('userc/_delete_form.html.twig') }}
+{% endblock %}

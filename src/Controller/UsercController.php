@@ -3,23 +3,24 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ArticlesController extends AbstractController
+#[Route('/userc')]
+class UsercController extends AbstractController
 {
-    #[Route('/articles', name: 'app_articles')]
-    public function index(ArticlesRepository $articles): Response
+    #[Route('/', name: 'app_userc_index', methods: ['GET'])]
+    public function index(ArticlesRepository $articlesRepository): Response
     {
-        $articles = $articles->findBy([]);
         return $this->render('userc/index.html.twig', [
-            'articles' => $articles,
+            'articles' => $articlesRepository->findAll(),
         ]);
     }
+
     #[Route('/new', name: 'app_userc_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ArticlesRepository $articlesRepository): Response
     {

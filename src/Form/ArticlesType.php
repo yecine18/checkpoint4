@@ -2,33 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\User;
+use App\Entity\Articles;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class ArticlesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-           // ->add('email')
-            //->add('roles')
-            //->add('password')
-            ->add('nom')
-            ->add('prenom')
-            //->add('isVerified')
-            ->add('description')
-            //->add('birthday')
             ->add('image')
-          //  ->add('articles')
+            ->add('description')
+            ->add('price')
+           // ->add('users')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Articles::class,
         ]);
     }
 }

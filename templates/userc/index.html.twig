@@ -1,4 +1,3 @@
-
 {% extends 'layout/layout.html.twig' %}
 
 {% block title %}Y'S{% endblock %}
@@ -21,8 +20,16 @@
 </div>
 </div>
 </div>
+{% if app.user is defined and app.user is not empty %}
+                {% if is_granted('ROLE_ADMIN') == true %}
+                    <a href="{{ path('app_userc_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('app_userc_edit', {'id': article.id}) }}">edit</a>
+                {%  endif %}
+                {%  endif %}
+
 </div>
 </div>
+
 </section>
 {% endfor %}
 {% endblock %}
