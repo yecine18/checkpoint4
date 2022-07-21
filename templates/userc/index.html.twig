@@ -4,32 +4,36 @@
 
 {% block body %}
 <br><br>
-<section class="py-8 py-md-11 mt-n10 mt-md-n14">
+<section class="py-8 py-md-6 mt-n12 mt-md-n7">
 <div class="container">
-<div class="row" data-isotope='{"layoutMode": "fitRows"}'>
+<div class="row row-cols-1 row-cols-md-2 g-6 text-center" data-isotope='{"layoutMode": "fitRows"}'>
 {% for article in articles %}
 {% set img = articles %}
-<div class="col-12 col-md-4 ux">
-<div class="card lift lift-lg shaow-light-lg mb-7" href="#">
+<div class="col">
+<div class="card " href="#">
+
 <img class="card-img-top" src={{article.image}}>
 <div class="card-body">
 <div class="shape shape-botton-100 shape-fluid-x svg-shim text-wite">
 </div>
 <p>{{ article.description }}</p>
 <p>{{ article.price }} $</p>
-</div>
-</div>
-</div>
 {% if app.user is defined and app.user is not empty %}
                 {% if is_granted('ROLE_ADMIN') == true %}
-                    <a href="{{ path('app_userc_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('app_userc_new', {'id': article.id}) }}">new</a>
                     <a href="{{ path('app_userc_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('app_userc_delete', {'id': article.id}) }}">delete</a>
                 {%  endif %}
                 {%  endif %}
+              
+</div>
 
 </div>
-</div>
 
-</section>
+</div>
 {% endfor %}
+</div>
+</div>
+
+</section> 
 {% endblock %}
