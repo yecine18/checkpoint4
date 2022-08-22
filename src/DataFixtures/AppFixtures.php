@@ -6,6 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use App\Entity\User;
+use App\Entity\Projet;
 use App\Entity\Articles;
 use App\Entity\Blogpost;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -37,23 +38,31 @@ class AppFixtures extends Fixture
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
         //creation de 10 blogpost
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 9; $i++) {
             $blogpost = new Blogpost();
             /** @phpstan-ignore-next-line */
             $blogpost->setTitre($faker->words(3, true))
                 ->setCratedAt($faker->dateTimeBetween( '-6 months','now'))
-                ->setContenu($faker->text(350))
+                ->setContenu($faker->text(500))
                 ->setSlug($faker->slug(3))
                 ->setUser($user);
                 $manager->persist($blogpost);
                 //creation de 10 articles
         }
-                for ($j = 0; $j <= 10; $j++) {
+                for ($j = 0; $j <= 9; $j++) {
                     $articles = new Articles();
                     $articles->setImage($faker->imageUrl())
                     ->setdescription($faker->text(350))
                     ->setPrice($faker->randomFloat(2, 100, 9999));
                     $manager->persist($articles);
+                }
+                for ($b = 0; $b <= 9; $b++) {
+                    $projet = new Projet();
+                    $projet->setImage($faker->imageUrl())
+                    ->setTitle($faker->words(3, true))
+                    ->setdesciption($faker->text(500))
+                    ->setDate($faker->dateTimeBetween( '-6 months','now'));
+                    $manager->persist($projet);
                 }
         
                 $manager->flush();

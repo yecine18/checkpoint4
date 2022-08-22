@@ -1,0 +1,31 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}Y'S{% endblock %}
+
+{% block body %}
+    <h1>Nos Projets</h1>
+<section class="py-8 py-md-11 mt-n10 mt-md-n14">
+<div class="container">
+<div class="row" data-isotope='{"layoutMode": "fitRows"}'>
+        {% for projet in projets %}
+                <div class="card" style="width: 35rem;">
+  <img src={{ projet.image }} class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ projet.title }}</h5>
+    <p class="card-text">{{ projet.desciption }}</p>
+    <p class="card-text">{{ projet.date ? projet.date|date('Y-m-d') : '' }}</p>
+  </div>
+</div>
+{% if app.user is defined and app.user is not empty %}
+                {% if is_granted('ROLE_ADMIN') == true %}
+                    <a href="{{ path('app_projet_show', {'id': projet.id}) }}">show</a>
+                    <a href="{{ path('app_projet_edit', {'id': projet.id}) }}">edit</a>
+                    <a href="{{ path('app_projet_new') }}">Create new</a>
+                     {%  endif %}
+                {%  endif %}
+              
+        {% endfor %}
+</div>
+</div>
+</section>
+{% endblock %}
